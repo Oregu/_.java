@@ -64,7 +64,6 @@ public interface TernaryFunction<T, U, V, R> {
     Objects.requireNonNull(after);
     return (T t, U u, V v) -> after.apply(apply(t, u, v));
   }
-
 }
 
 }
