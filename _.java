@@ -29,6 +29,14 @@ static <T, U, V, R> BiFunction<U, V, R> partial(TernaryFunction<T, U, V, R> tern
   return (u, v) -> ternary.apply(t, u, v);
 }
 
+static <T, U, V, W, R> Function<T, TernaryFunction<U, V, W, R>> curry(QuaternaryFunction<T, U, V, W, R> quaternaryFunction) {
+  return t -> (u, v, w) -> quaternaryFunction.apply(t, u, v, w);
+}
+
+static <T, U, V, W, R> TernaryFunction<U, V, W, R> partial(QuaternaryFunction<T, U, V, W, R> quaternary, T t) {
+  return (u, v, w) -> quaternary.apply(t, u, v, w);
+}
+
 static <CT extends List<T>, T, R> List<R> map(Function<T, R> f, CT coll) {
   return coll.stream().map(f).collect(toList());
 }
