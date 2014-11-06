@@ -1,4 +1,6 @@
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.IntBinaryOperator;
@@ -6,6 +8,7 @@ import java.util.function.IntFunction;
 import java.util.function.IntUnaryOperator;
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 public interface _ {
 
@@ -37,7 +40,11 @@ static <T, U, V, W, R> TernaryFunction<U, V, W, R> partial(QuaternaryFunction<T,
   return (u, v, w) -> quaternary.apply(t, u, v, w);
 }
 
-static <CT extends List<T>, T, R> List<R> map(Function<T, R> f, CT coll) {
+static <CT extends Collection<T>, T, R> List<R> map(Function<T, R> f, CT coll) {
   return coll.stream().map(f).collect(toList());
+}
+
+static <CT extends Collection<T>, T, R> Set<R> mapDistinct(Function<T, R> f, CT coll) {
+  return coll.stream().map(f).collect(toSet());
 }
 }
