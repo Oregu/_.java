@@ -56,4 +56,8 @@ static <T> Optional<T> findFirst(Predicate<T> p, T[] arr) {
   return Arrays.stream(arr).filter(p).findFirst();
 }
 
+static <CT extends Collection<T>, T, K, V> Map<K, V> toMap(Function<T, K> keyMapper, Function<T, V> valueMapper, CT coll) {
+  return coll.stream().collect(Collectors.toMap(keyMapper, valueMapper));
+}
+
 }
