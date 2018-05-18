@@ -47,4 +47,13 @@ static <CT extends Collection<T>, T, R> List<R> map(Function<T, R> f, CT coll) {
 static <CT extends Collection<T>, T, R> Set<R> mapDistinct(Function<T, R> f, CT coll) {
   return coll.stream().map(f).collect(toSet());
 }
+
+static <CT extends Collection<T>, T> Optional<T> findFirst(Predicate<T> p, CT coll) {
+  return coll.stream().filter(p).findFirst();
+}
+
+static <T> Optional<T> findFirst(Predicate<T> p, T[] arr) {
+  return Arrays.stream(arr).filter(p).findFirst();
+}
+
 }
